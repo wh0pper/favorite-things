@@ -1,10 +1,11 @@
 require('sinatra')
 require('sinatra/reloader')
-also_reload('lib/**.*.rb')
+also_reload('lib/**/*.rb')
 require('pry')
 require('./lib/item.rb')
 
 get('/') do
+  Item.clear
   @list = Item.all()
   erb(:list)
 end
@@ -20,6 +21,8 @@ post('/') do
   item = Item.new(item_name)
   item.save()
   item.add_ranking(item_ranking)
+  Item.sort_by_rank!()
   @list = Item.all()
+  puts @list
   erb(:list)
 end

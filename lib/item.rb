@@ -40,6 +40,7 @@ class Item
   end
 
   def self.sort_by_rank!()
-    @@list.sort_by! {|item| item.ranking}
+    @@list.sort_by! {|item| item.ranking.to_i}
+    @@list.reverse!
   end
 end
