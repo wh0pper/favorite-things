@@ -15,3 +15,8 @@
   </div>
   <button type='submit' class='btn'>Add</button>
 </form>
+
+<% if !@if_error %>
+  <% error = "<div id='error'><h4>Item already exists</h4></div>" %>
+  <%= error %>
+<% end %>

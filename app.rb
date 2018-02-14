@@ -19,7 +19,7 @@ post('/') do
   item_name = params.fetch('item')
   item_ranking = params.fetch('item-ranking')
   item = Item.new(item_name)
-  item.save()
+  @if_error = item.save()
   item.add_ranking(item_ranking)
   Item.sort_by_rank!()
   @list = Item.all()

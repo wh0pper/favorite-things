@@ -19,11 +19,14 @@ class Item
     @ranking = score
   end
 
-  def self.find(name)
-  end
-
   def save()
+    @@list.each do |item|
+      if item.name == @name
+        return false
+      end
+    end
     @@list.push(self)
+    return true
   end
 
   def self.clear()
