@@ -1,0 +1,13 @@
+<h2>List of favorite things</h2>
+
+<% @list.each do |item| %>
+  <p><a href='items/<%= item.id %>'><%= item.name %></a></p>
+<% end %>
+
+<form action='/' method='post'>
+  <div class='form-group'>
+    <label for='item'>Item</label>
+    <input id='item' name='item' class='form-control' type='text'>
+  </div>
+  <button type='submit' class='btn'>Add</button>
+</form>
