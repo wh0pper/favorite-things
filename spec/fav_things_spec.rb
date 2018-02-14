@@ -20,6 +20,9 @@ describe('item') do
 end
 
 describe("#id") do
+  before() do
+    Item.clear()
+  end
   it("increments an id by 1 each time a new item is added") do
     item = Item.new("tacos")
     item.save()
@@ -31,6 +34,9 @@ describe("#id") do
 end
 
 describe(".find") do
+  before() do
+    Item.clear()
+  end
     it("finds an item based on its id") do
       item = Item.new("tacos")
       item.save()
@@ -40,3 +46,19 @@ describe(".find") do
       expect(Item.find(2)).to(eq(item2))
     end
   end
+
+describe("#sort_by_rank!") do
+  before() do
+    Item.clear()
+  end
+  it('sorts list by ranking score of items') do
+    item = Item.new("tacos")
+    item.add_ranking(10)
+    item.save()
+    item2 = Item.new("pizza")
+    item2.add_ranking(1)
+    item2.save()
+    Item.sort_by_rank!
+    expect(Item.all()).to(eq([item2, item]))
+  end
+end

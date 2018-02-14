@@ -16,8 +16,10 @@ end
 
 post('/') do
   item_name = params.fetch('item')
+  item_ranking = params.fetch('item-ranking')
   item = Item.new(item_name)
   item.save()
+  item.add_ranking(item_ranking)
   @list = Item.all()
   erb(:list)
 end
